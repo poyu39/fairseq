@@ -1179,7 +1179,7 @@ class TransformerEncoder(nn.Module):
 
 
 class ConformerEncoder(TransformerEncoder):
-    def build_encoder_layer(self, args):
+    def build_encoder_layer(self, args, **kwargs):
         layer = ConformerWav2Vec2EncoderLayer(
             embed_dim=self.embedding_dim,
             ffn_embed_dim=args.encoder_ffn_embed_dim,
@@ -1222,7 +1222,7 @@ class ConformerEncoder(TransformerEncoder):
 
         self.apply(init_bert_params)
 
-    def extract_features(self, x, padding_mask=None, tgt_layer=None):
+    def extract_features(self, x, padding_mask=None, tgt_layer=None, **kwargs):
         if padding_mask is not None:
             x = index_put(x, padding_mask, 0)
 
